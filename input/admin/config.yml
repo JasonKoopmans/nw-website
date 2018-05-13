@@ -1,0 +1,63 @@
+backend:
+  name: github
+  repo: NorthWindsorUMC/nw-website
+  branch: master # Branch to update (optional; defaults to master)
+
+media_folder: "/input/assets" # Media files will be stored in the repo under images/uploads
+public_folder: "/assets" # The src attribute for uploaded media will begin with /images/uploads
+
+collections:
+  - name: "directory" # Used in routes, e.g., /admin/collections/blog
+    label: "directory" # Used in the UI
+    folder: "input/directory" # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    fields: # The fields for each document, usually in front matter
+      - {label: "Title", name: "Title", widget: "string"}
+      - {label: "Name",  name: "Name",  widget: "string" }
+      - {label: "Mobile", name: "Mobile", widget: "string", required: false}
+      - {label: "Phone", name: "Phone", widget: "string", required: false }
+      - {label: "Email", name: "Email", widget: "string", required: false}
+  - name: "event"
+    label: "event"
+    folder: "input/events"
+    create: true
+    fields: 
+      - {label: "Title", name: "Title", widget: "string"}
+      - {label: "DisplayDate", name: "DisplayDate", widget: "string"}
+      - {label: "Sort", name: "Sort", widget: "number"}
+      - {label: "PublishOn", name: "PublishOn", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "news"
+      label: "news"
+      folder: "input/news"
+      create: true
+      fields: 
+      - {label: "Title", name: "Title", widget: "string"}
+      - {label: "Sort", name: "Sort", widget: "number"}
+      - {label: "PublishOn", name: "PublishOn", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "rotatoritems"
+      label: "rotatoritems"
+      folder: "input/rotatoritems"
+      create: true
+      fields: 
+      - {label: "Title", name: "Title", widget: "string"}
+      - {label: "Caption", name: "Caption", widget: "string"}
+      - {label: "Sort", name: "Sort", widget: "number"}
+      - {label: "PublishOn", name: "PublishOn", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Body", name: "body", widget: "markdown"}
+  - name: "worshipmaterials"
+      label: "worshipitems"
+      folder: "input/worshipitems"
+      create: true
+      fields: 
+      - {label: "PublishOn", name: "Date", widget: "datetime", format: "MM/DD/YYYY"}
+      - {label: "Image", name: "ImageUrl", widget: "image"} 
+      - {label: "Bulletin", name: "BulletinUrl", widget: "file", required: false} 
+      - {label: "StudyGuide", name: "StudyGuideUrl", widget: "file", required: false} 
+      - {label: "Sort", name: "Sort", widget: "number"}
+
+      
