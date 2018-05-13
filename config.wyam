@@ -1,0 +1,67 @@
+
+#n -p Wyam.Markdown
+#n -p Wyam.Yaml
+#n -p Wyam.Razor
+#n Wyam.Html
+
+Pipelines.Add("NewsItems", 
+	ReadFiles(@"news\*.md"),
+	FrontMatter(Yaml()),
+	Where( (x,y) =>  DateTime.Parse( (string)x["Expires"] ).CompareTo( DateTime.Now ) > 0 ),
+	Where( (x,y) =>  DateTime.Parse( (string)x["Published"] ).CompareTo( DateTime.Now ) < 0 ),
+	OrderBy( @doc["Sort"] ).Descending(true),
+	//Trace(@doc["Sort"]),
+	Markdown()
+);
+
+Pipelines.Add("EventItems", 
+	ReadFiles(@"events\*.md"),
+	FrontMatter(Yaml()),
+	Meta("Published", DateTime.Now.ToString("MM/dd/yyyy") ).OnlyIfNonExisting(true),
+	//Trace(String.Format("File: {0} Published: {1} Expires: {2}", @doc["SourceFilePath"].ToString().Substring(@doc["SourceFilePath"].ToString().Length - 25) , @doc["Published"], @doc["Expires"]) ),
+	Where( (x,y) =>  DateTime.Parse( (string)x["Expires"] ).CompareTo( DateTime.Now ) > 0 ),
+    Where( (x,y) =>  DateTime.Parse( (string)x["Published"] ).CompareTo( DateTime.Now ) < 0 ),
+	OrderBy( @doc["Sort"] ).Descending(false),
+	Take(12),
+	OrderBy( @doc["Sort"] ).Descending(true),
+	//Trace(@doc["Sort"]),
+	Markdown()
+);
+
+Pipelines.Add("RotatorItems", 
+	ReadFiles(@"rotatoritems\*.md"),
+	FrontMatter(Yaml()),
+	Where( (x,y) =>  DateTime.Parse( (string)x["Expires"] ).CompareTo( DateTime.Now ) > 0 ),
+	Markdown()
+);
+
+Pipelines.Add("DirectoryItems", 
+	ReadFiles(@"directory\*.md"),
+	FrontMatter(Yaml()),
+	//Where(x =>  DateTime.Parse(x["Expires"]) > DateTime.Now ),
+	Markdown()
+);
+
+Pipelines.Add("WorshipMaterials", 
+	ReadFiles(@"worshipmaterials\*.md"),
+	FrontMatter(Yaml()),
+	OrderBy( @doc["Sort"] ),
+	//Trace(@doc["Sort"]),
+	Markdown()
+);
+
+Pipelines.Add("WorshipMaterialAssets", 
+	CopyFiles("worshipmaterials/pdf/*")
+);
+
+Pipelines.Add("Resources",
+    CopyFiles( "assets/**/*")
+);
+
+Pipelines.Add("Home",
+	ReadFiles(@"Home.cshtml"),
+	Razor(),
+	ValidateLinks(),
+	WriteFiles(".html")
+);
+

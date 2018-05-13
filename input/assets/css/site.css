@@ -1,0 +1,24 @@
+body { 
+	padding-top: 200px; 
+	padding-bottom: 70px;	
+}
+
+.text-white {
+    color: white;
+}
+.brand-font {
+    font-family: 'Lobster', cursive;
+}
+
+.service-item {
+	min-height: 310px;
+	padding: 10px;
+	border-width: 3px;
+}
+
+.facebook {
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAA6CAYAAACqE5nFAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB98GDBIgARcLLWgAAAFFSURBVFjDY/z//z8DOpjnnIPCTwo/wczAwJDGwMCQzMDAYMyACXwY0s5sxSLOwMJAHFjKwMAQzkAGYCKkICn8hDcRhn8h2wIiXf4XlwQxQaSFRWwiAwPDNST+HUosYEPj35m30qIAIyjTyA8idPCdqpFMKWAhQw9nUvgJ5Lzwcd5KC9LiICn8xAcGBgZ+HHpUGBgYziDxZzEwMKTTMohu0joOrtHagsvkRHIBUvpvZ2BgEEKSe8rAwNAELxhXWjwl2YJ5Ky0WIEV4NZoF7+attJg1aPLBqAWjFoxaQER9MG+lhTwlFjBia3iNxsGoBUMgH3R2dpJsUHl5+eAOImYGBoZMaIPrPxbsTWnTkXY9HKjrRns4pPVwoC0/mmW0YdDDQevtfyQnDkZ7OEOohwPlk2zBAiQ2Rg8HGrGjdfKoBaMWDBYLALXlUj7SAo4uAAAAAElFTkSuQmCC
+	) left bottom no-repeat;
+	height: 24px;
+	width: 24px;
+}

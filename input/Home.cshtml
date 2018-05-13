@@ -1,0 +1,254 @@
+
+<h2 id="home">We're an active congregation in North Windsor, Wisconsin</h2>
+
+<div class="row">
+    
+      <div id="carousel-example-generic" class="carousel slide col-8" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+		@for(int i =0; i <= Documents.FromPipeline("RotatorItems").Count(); i++) {
+			<li 
+				data-target="#carousel-example-generic" 
+				data-slide-to="@i" 
+				@if(i == 0) {
+					Html.Raw("class='active'");
+				}
+			></li>    		
+		}
+		</ol>
+	
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner" role="listbox">
+			@{
+				string activeMarker = "active";
+				@foreach(var doc in Documents.FromPipeline("RotatorItems").OrderBy(d => d["Sort"])) {
+					
+					<div class="item @activeMarker">
+						<div class="container" style="display:block;width:100%;height:450px;overflow:hidden;">
+							@Html.Raw(doc.Content)
+							<div class="carousel-caption">
+								<h3>@doc["Title"]</h3>
+								<p>@doc["Caption"]</p>
+							</div>
+						</div>
+					</div>
+					activeMarker = String.Empty;
+				}
+			}
+			
+		</div>
+	
+		<!-- Controls -->
+		<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+			<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+			<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+    
+    <br/>
+    
+	<div class="col-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title"> <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> News</div>
+			</div>
+			<div class="panel-body">
+		@foreach(var doc in Documents.FromPipeline("NewsItems")) {
+			<div class="media">
+				<div class="media-left">
+					<a href="#">
+					</a>
+					<button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-paperclip"></span></button>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">@doc["Title"] </h4>
+					@Html.Raw(doc.Content)
+				</div>
+			</div>
+		}
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>Events</h3>
+			</div>
+			<div class="panel-body">
+				
+				@foreach(var doc in Documents.FromPipeline("EventItems").OrderBy(d => d["Sort"]) ) {
+					<div class="media">
+						<div class="media-left">
+							<a href="#">
+							</a>
+							<button class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-calendar"></span></button>
+						</div>
+						<div class="media-body">
+							
+							<h4 class="media-heading">@doc["Title"] <small>[@doc["DisplayDate"]]</small></h4>
+							<h6></h6>
+							@Html.Raw(doc.Content)
+						</div>
+					</div>
+					
+				}
+				
+			</div>
+		</div>
+  </div>
+	
+</div>
+
+<div class="row">
+	<h1 id="services" class="col-md-12 well"><span class="glyphicon glyphicon-book"></span> Services</h1>
+</div>
+<p>
+	At Poynette Inch United Methodist Church, we have services for all. In addition to our traditional services held each Sunday, we have the following services and activities:
+</p>
+<div class="row">
+	<div class="col-md-4">
+		<div class="thumbnail service-item">
+			<div class="row">
+				<h1 class="glyphicon glyphicon-home col-md-2 col-md-offset-5"></h1>
+			</div>
+			
+			<h4 class="text-center"> Sunday School</h4>
+			<hr/>
+			<p>
+				Following worship each Sunday, there are worship study opportunities for children
+				and adults.   For more information, please contact Sharon Saeger at 
+				<a href="tel:608.635.2424">608.635.2424</a> 
+			</p>
+		</div>
+	</div>	
+	
+	<div class="col-md-4 "  >
+		<div class="thumbnail service-item">
+			<div class="row">
+				<h1 class="glyphicon glyphicon-book col-md-2 col-md-offset-5"></h1>
+			</div>
+			<h4 class="text-center">Small Group Study</h4>
+			<hr/>
+			<p>
+				Come and join our group study. Please contact Ken Saeger at <a href="tel://608.846.2295">608.846.2295</a>
+				for more information including materials and meeting schedule.
+			</p>
+		</div>
+	</div>
+		
+	<div class="col-md-4" >
+		<div class="thumbnail service-item">
+			<div class="row">
+				<h1 class="glyphicon glyphicon-leaf col-md-2 col-md-offset-5"></h1>
+			</div>
+			<h4 class="text-center">Prayer Requests</h4>
+			<hr/>
+			<p>
+				Contact North Windsor at <a href="tel://608.635.2424">608.635.2424</a> or <a href="mailto://nwumchurch@outlook.com">nwumchurch@outlook.com</a> for prayer needs or to arrange a visit.
+			</p>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-12">
+		<h3>Wedding and Funeral</h3>
+		<p>
+			Church facilities are available for services upon request Please contact Pastor Dianne or one of our trustees for details and scheduling.
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<h1 id="directory" class="col-md-12 well"><span class="glyphicon glyphicon-list-alt"></span> Directory</h1>
+</div>
+
+<div class="row">
+@foreach(var doc in Documents.FromPipeline("DirectoryItems")) {
+
+	<div class="col-md-4">
+		<div class="thumbnail">
+			<!-- <img src="http://placehold.it/300x350?text=Photo"/> -->
+			<div class="caption">
+				<h4>@doc["Title"]</h4>
+				<h6>@doc["Name"]</h6>
+				<address>
+				@if(!String.IsNullOrEmpty( (string)doc["Mobile"]) ) {
+					 <abbr title="Mobile">M:</abbr> <a href="tel://@doc["Mobile"]">@doc["Mobile"]</a>
+					 <br/>
+				}
+				
+				@if(!String.IsNullOrEmpty( (string)doc["Phone"]) ) {
+					<abbr title="Phone">P:</abbr> <a href="tel://@doc["Phone"]">@doc["Phone"]</a>
+					<br/>					
+				}
+				
+				@if(!String.IsNullOrEmpty( (string)doc["Email"]) ) {
+					<abbr title="Email">E:</abbr> <a href="mailto://@doc["Email"]">@doc["Email"]</a>
+				}
+
+				</address>
+			</div>
+		</div>
+	</div>
+	 
+	
+	
+	
+
+}
+</div>
+<div class="col-md-12 well">
+	<h1 id="contact"><span class="glyphicon glyphicon-envelope"></span> Contact</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-4 thumbnail">
+		<h3>Church</h3>
+		<address>
+			7523 S Meixner Rd <br/>
+			DeForest, WI 53532<br/>
+			<abbr title="Phone">P: </abbr><a href="tel://608.635.2424">608.635.2424</a><br/>
+			<abbr title="Email">E: </abbr><a href="mailto://nwumchurch@outlook.com">nwumchurch@outlook.com</a>
+		</address>
+		<h3>Sunday Services: Tim McNurlen</h3>
+		<address>
+			<abbr title="Mobile">M: </abbr><a href="tel://608.514.5543">608.514.5543</a><br/>
+			<abbr title="Home">H: </abbr><a href="tel://608.838.1034">608.838.1034</a><br/>
+			<abbr title="Email">E: </abbr><a href="mailto://timmyrmac@charter.net">timmyrmac@charter.net</a><br/>
+		</address>
+
+		<h3>Patorial Care and Funeral: Sandra (Sandy) Schieble</h3>
+		<address>
+			<abbr title="Mobile">M: </abbr><a href="tel://608.712.2910">608.712.2910</a><br/>
+			<abbr title="Email">E: </abbr><a href="mailto://mymobileministry@gmail.com">mymobileministry@gmail.com</a><br/>
+		</address>
+		
+	</div>
+	
+	<div class="col-md-8">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11622.295662286535!2d-89.2787947319916!3d43.2603509791367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8806fa3ca4622a11%3A0x1b0ddcfd57e209f3!2s7523+S+Meixner+Rd%2C+DeForest%2C+WI+53532!5e0!3m2!1sen!2sus!4v1493602004489" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+	
+	</div>
+	
+</div>
+
+<div class="col-md-12 well">
+	<h1 id="worshipmaterials"><span class="glyphicon glyphicon-folder-open"></span> Worship Materials</h1>
+</div>
+
+<div class="row">
+@foreach(var doc in Documents.FromPipeline("WorshipMaterials").OrderByDescending(d => d["Sort"])) {
+	<div class="col-md-3 thumbnail"> 
+		
+		<div  class="caption">
+			<h4>Materials for: @doc["Date"]</h4>
+			<a class="btn btn-link" href="@doc["BulletinUrl"]" target="blank">Bulletin</a>
+			<a class="btn btn-link" href="@doc["StudyGuideUrl"]" target="blank">Study Guide</a>
+		</div>
+	</div>
+}
+</div>
