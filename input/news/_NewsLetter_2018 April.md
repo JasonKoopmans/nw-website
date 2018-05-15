@@ -1,5 +1,4 @@
 ---
----
 Title: April Newsletter
 Sort: 180401
 PublishOn: 04/01/2018

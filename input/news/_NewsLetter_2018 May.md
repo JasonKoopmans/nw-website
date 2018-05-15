@@ -1,5 +1,4 @@
 ---
----
 Title: May Newsletter
 Sort: 180501
 PublishOn: 05/01/2018
