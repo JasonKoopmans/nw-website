@@ -29,20 +29,20 @@ collections:
       - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "news"
-      label: "news"
-      folder: "input/news"
-      create: true
-      fields: 
+    label: "news"
+    folder: "input/news"
+    create: true
+    fields: 
       - {label: "Title", name: "Title", widget: "string"}
       - {label: "Sort", name: "Sort", widget: "number"}
       - {label: "PublishOn", name: "PublishOn", widget: "datetime", format: "MM/DD/YYYY"}
       - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "rotatoritems"
-      label: "rotatoritems"
-      folder: "input/rotatoritems"
-      create: true
-      fields: 
+    label: "rotatoritems"
+    folder: "input/rotatoritems"
+    create: true
+    fields: 
       - {label: "Title", name: "Title", widget: "string"}
       - {label: "Caption", name: "Caption", widget: "string"}
       - {label: "Sort", name: "Sort", widget: "number"}
@@ -50,10 +50,10 @@ collections:
       - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "worshipmaterials"
-      label: "worshipitems"
-      folder: "input/worshipitems"
-      create: true
-      fields: 
+    label: "worshipitems"
+    folder: "input/worshipitems"
+    create: true
+    fields: 
       - {label: "PublishOn", name: "Date", widget: "datetime", format: "MM/DD/YYYY"}
       - {label: "Image", name: "ImageUrl", widget: "image"} 
       - {label: "Bulletin", name: "BulletinUrl", widget: "file", required: false} 
