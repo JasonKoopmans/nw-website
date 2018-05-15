@@ -50,8 +50,8 @@ collections:
       - {label: "Expires", name: "Expires", widget: "datetime", format: "MM/DD/YYYY"}
       - {label: "Body", name: "body", widget: "markdown"}
   - name: "worshipmaterials"
-    label: "worshipitems"
-    folder: "input/worshipitems"
+    label: "worshipmaterials"
+    folder: "input/worshipmaterials"
     create: true
     fields: 
       - {label: "PublishOn", name: "Date", widget: "datetime", format: "MM/DD/YYYY"}
